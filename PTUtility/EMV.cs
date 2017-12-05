@@ -442,10 +442,12 @@ namespace PTUtility.EMV
 
                             if (ii == 4)
                             {
-                                //Move to next Tags. Maybe encouter some "9000" value that is not included in the Tags Dictionary
-                                startIndexToRead += 4;
-                                //Always -1 because the 1st For Loop will automatically add +1
-                                i += 3;
+                                ////Move to next Tags. Maybe encouter some "9000" value that is not included in the Tags Dictionary
+                                //startIndexToRead += 4;
+                                ////Always -1 because the 1st For Loop will automatically add +1
+                                //i += 3;
+
+                                throw new ArgumentException("Invalid TLV Data");
                             }
                         }
                     }

@@ -13,7 +13,13 @@ namespace PTUtility.EMV
         public readonly List<TagsDictionary> tagsDictionary = new List<TagsDictionary>();
 
         public EMVTagsDictionary()
-        { 
+        {
+            tagsDictionary.Add(new TagsDictionary
+            {
+                Template = "",
+                Tags = "90",
+                Name = "Issuer Public Key Certificate"
+            });
             tagsDictionary.Add(new TagsDictionary
             {
                 Template = "BF0C",
