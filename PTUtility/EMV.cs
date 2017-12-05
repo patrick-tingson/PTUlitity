@@ -199,7 +199,7 @@ namespace PTUtility.EMV
                     }
                 }
                 else
-                    Execute(rawData);
+                    ExecuteUpdate(rawData);
 
                 return tnlvList;
             }
@@ -320,6 +320,147 @@ namespace PTUtility.EMV
 
                 tnlvList.AddRange(rawList);
             } 
+
+            void ExecuteUpdate(string _rawData)
+            {
+                var rawList = new List<TNLV>();
+                var data = _rawData;
+                var index = 0;
+                var len = 0;
+                var lenLength = "";
+                var startIndexToRead = 0;
+                var val = "";
+                TNLV _tnlv; 
+
+                for (int i = 0; i < _rawData.Length; i++)
+                {
+                    //Check the 1st 2 Chars
+                    for (int ii = 1; ii <= 4; ii++)
+                    {
+                        var toCheckData = data.Substring(startIndexToRead, ii);
+                        _tnlv = tagsDictionary.FirstOrDefault(w => w.Tags == toCheckData);
+                        if (_tnlv != null)
+                        {
+                            lenLength = _tnlv.Length == null ? data.Substring(i + ii, 2) : _tnlv.Length;
+                            len = Convertion.HexToDecimal(lenLength) * 2;
+                            val = TagsConvertedValue(_tnlv.Tags, data.Substring(i + ii + lenLength.Length, len));
+                            startIndexToRead = i + ii + lenLength.Length + len;
+                            i = startIndexToRead - 1;
+                            rawList.Add(new TNLV
+                            {
+                                Length = len.ToString(),
+                                Name = _tnlv.Name,
+                                Tags = _tnlv.Tags,
+                                Value = val
+                            });
+
+                            //Check if the Tags is also a Template
+                            var checkIfTagIsTemplate = tagsDictionary.FirstOrDefault(w => w.Template == _tnlv.Tags);
+
+                            if (checkIfTagIsTemplate != null)
+                                rawList.AddRange(EMVParent(val, _tnlv.Tags));
+
+                            break;
+                        }
+
+                        if(ii == 4)
+                        {
+                            //Move to next Tags. Maybe encouter some "9000" value that is not included in the Tags Dictionary
+                            startIndexToRead += 4;
+                            //Always -1 because the 1st For Loop will automatically add +1
+                            i += 3;
+                        }
+                    }
+                }
+
+                foreach (var tnlv in rawList)
+                {
+                    if (tnlv.Value.Length > 0)
+                    {
+                        Console.WriteLine("------" + tnlv.Tags + " " + tnlv.Name);
+                        Console.WriteLine("^^^^^^^^^" + tnlv.Value);
+                    }
+                    else
+                        Console.WriteLine("---" + tnlv.Tags + " " + tnlv.Name);
+                }
+            }
+
+
+            IEnumerable<TNLV> EMVParent(string _rawData, string template)
+            {
+                var rawList = new List<TNLV>();
+                var data = _rawData;
+                var index = 0;
+                var len = 0;
+                var lenLength = "";
+                var startIndexToRead = 0;
+                var val = "";
+                TNLV _tnlv;
+
+                try
+                {
+                    for (int i = 0; i < _rawData.Length; i++)
+                    {
+                        //Check the 1st 2 Chars
+                        for (int ii = 1; ii <= 4; ii++)
+                        {
+                            var toCheckData = data.Substring(startIndexToRead, ii);
+                            _tnlv = tagsDictionary.FirstOrDefault(w => w.Tags == toCheckData && w.Template == template);
+                            if (_tnlv != null)
+                            {
+                                lenLength = _tnlv.Length == null ? data.Substring(i + ii, 2) : _tnlv.Length;
+                                len = Convertion.HexToDecimal(lenLength) * 2;
+                                val = TagsConvertedValue(_tnlv.Tags, data.Substring(i + ii + lenLength.Length, len));
+                                startIndexToRead = i + ii + lenLength.Length + len;
+                                i = startIndexToRead - 1;
+                                rawList.Add(new TNLV
+                                {
+                                    Length = len.ToString(),
+                                    Name = _tnlv.Name,
+                                    Tags = _tnlv.Tags,
+                                    Value = val
+                                });
+                                break;
+                            }
+
+                            if (ii == 4)
+                            {
+                                //Move to next Tags. Maybe encouter some "9000" value that is not included in the Tags Dictionary
+                                startIndexToRead += 4;
+                                //Always -1 because the 1st For Loop will automatically add +1
+                                i += 3;
+                            }
+                        }
+                    }
+                }
+                catch { }
+
+                return rawList;
+            }
+
+
+            string TagsConvertedValue(string tag, string value)
+            {
+                var val = value;
+
+                try
+                {
+                    switch (tag)
+                    {
+                        case "5F20":
+                        case "50":
+                        case "5F2D":
+                        case "9F1F":
+                            val = Convertion.HexToAscii(value);
+                            break;
+                    }
+                }
+                catch{}
+
+                return val;
+            }
+
+
         }
 
         public class GetProcessingOption

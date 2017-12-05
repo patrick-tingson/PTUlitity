@@ -128,14 +128,7 @@ namespace PTUtility.EMV
                 Tags = "5F2A",
                 Name = "Transaction Currency Code",
                 Length = "02"
-            });
-            tagsDictionary.Add(new TagsDictionary
-            {
-                Template = "",
-                Tags = "5F2A",
-                Name = "Transaction Currency Code",
-                Length = "02"
-            });
+            }); 
             tagsDictionary.Add(new TagsDictionary
             {
                 Template = "A5",

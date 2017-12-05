@@ -40,13 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\RSACryptoServiceProviderExtension.cs" />
+    <Compile Include="Convertion.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="EMV.cs" />
     <Compile Include="EMVTagsDictionary.cs" />
     <Compile Include="ISO8583.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sockets.cs" />
-    <Compile Include="Utility.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PTUtility.ISO8583
+namespace PTUtility
 {
     public static class ISO8583
     {
@@ -62,10 +62,15 @@ namespace PTUtility.ISO8583
             //Switch Message
             Message = Message.Substring((getIndexOfTPDU + 1) + 4, Message.Length - (getIndexOfTPDU + 6));
 
-            string bitmap = Message.Substring(4, 16);
+            //string bitmap = Message.Substring(4, 16);
+            string bitmap = Message.Substring(0, 16);
+
             string binaryBitmap = Convertion.HexToBinary(bitmap);
             string[] parsedMessage = new string[65];
-            int messagePosition = 20;
+
+            //int messagePosition = 20;
+            int messagePosition = 16;
+
             int bitmapPosition = 0;
             int fieldLength = 0;
 
@@ -97,7 +102,8 @@ namespace PTUtility.ISO8583
                             parsedMessage[bitmapPosition] = Message.Substring(messagePosition, fieldLength);
                             break;
                         case 55:
-                            fieldLength = Convert.ToInt16(Message.Substring(messagePosition, 4));
+                            //fieldLength = Convert.ToInt16(Message.Substring(messagePosition, 4));
+                            var testLength = Message.Substring(messagePosition, 4);
                             messagePosition += 4;
                             parsedMessage[bitmapPosition] = Message.Substring(messagePosition, fieldLength);
                             break;
@@ -106,7 +112,8 @@ namespace PTUtility.ISO8583
                         case 39:
                         case 41:
                         case 42:
-                            parsedMessage[bitmapPosition] = Convertion.HexToAscii(Message.Substring(messagePosition, fieldLength));
+                            //parsedMessage[bitmapPosition] = Convertion.HexToAscii(Message.Substring(messagePosition, fieldLength));
+                            parsedMessage[bitmapPosition] = Message.Substring(messagePosition, fieldLength);
                             break;
                         //Constant Length
                         default:
