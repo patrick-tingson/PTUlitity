@@ -195,7 +195,7 @@ namespace PTUtility.EMV
                 {
                     foreach (var rawDataInList in rawDataList)
                     {
-                        Execute(rawDataInList);
+                        ExecuteUpdate(rawDataInList);
                     }
                 }
                 else
@@ -328,6 +328,8 @@ namespace PTUtility.EMV
                     var rawList = new List<TNLV>();
 
                     rawList.AddRange(EMVParent(_rawData, ""));
+
+                    tnlvList.AddRange(rawList);
 
                     //var data = _rawData;
                     //var index = 0;

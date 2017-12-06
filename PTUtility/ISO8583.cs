@@ -19,8 +19,8 @@ namespace PTUtility
         //                                        3, 3, 3, 16, 32, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 16};
         public static int[] FieldLength = new int[65]{ 0, 
                                                 0, 2, 6, 12, 12, 12, 10, 8, 8, 8, 6, 6, 4, 4, 4, 4, 
-                                                4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 1, 8, 8, 8, 8, 2,
-                                                2, 2, 2, 4, 24, 6, 4, 4, 16, 30, 40, 2, 2, 4, 4, 4,
+                                                4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 1, 18, 8, 8, 8, 2,
+                                                2, 2, 2, 4, 24, 12, 4, 4, 16, 30, 40, 2, 2, 4, 4, 4,
                                                 4, 4, 4, 16, 32, 4, 4, 4, 4, 4, 4, 1, 4, 4, 4, 16};
 
         public static string CreateBitmap(string[] Message)
@@ -62,14 +62,14 @@ namespace PTUtility
             //Switch Message
             Message = Message.Substring((getIndexOfTPDU + 1) + 4, Message.Length - (getIndexOfTPDU + 6));
 
-            //string bitmap = Message.Substring(4, 16);
-            string bitmap = Message.Substring(0, 16);
+            string bitmap = Message.Substring(4, 16);
+            //string bitmap = Message.Substring(0, 16);
 
             string binaryBitmap = Convertion.HexToBinary(bitmap);
             string[] parsedMessage = new string[65];
 
-            //int messagePosition = 20;
-            int messagePosition = 16;
+            int messagePosition = 20;
+            //int messagePosition = 16;
 
             int bitmapPosition = 0;
             int fieldLength = 0;
@@ -162,25 +162,34 @@ namespace PTUtility
                         //Not Constant Length
                         case 2:
                         case 35:
-                            fieldLength = Convert.ToInt16(Message.Substring(messagePosition, 2));
-                            messagePosition += 2;
-                            parsedMessage[bitmapPosition] = Message.Substring(messagePosition, fieldLength);
+                            fieldLength = Convert.ToInt16(Message.Substring(messagePosition, 2)); 
+                            messagePosition += fieldLength % 2 == 0 ? 2 : 3;
+                            parsedMessage[bitmapPosition] = Message.Substring(messagePosition, 
+                                fieldLength % 2 == 0 ? fieldLength : fieldLength - 1 );
                             break;
                         case 43: 
                         case 54: 
                         case 55: 
                         case 61:
+                            var testData = Message.Substring(messagePosition, 4);
                             fieldLength = Convert.ToInt16(Message.Substring(messagePosition, 4)) * 2;
                             messagePosition += 4;
-                            parsedMessage[bitmapPosition] = Message.Substring(messagePosition, fieldLength);
+
+                            if (bitmapPosition == 61)
+                                parsedMessage[bitmapPosition] = Convertion.HexToAscii(Message.Substring(messagePosition, fieldLength));
+                            else 
+                                parsedMessage[bitmapPosition] = Message.Substring(messagePosition, fieldLength);
+
                             break;
                         //Hex value need convert to Ascii
-                        //case 37:
-                        //case 39:
-                        //case 41:
-                        //case 42:
-                        //    parsedMessage[bitmapPosition] = Convertion.HexToAscii(Message.Substring(messagePosition, fieldLength));
-                        //    break;
+                        case 28:
+                        case 37:
+                        case 39:
+                        case 41:
+                        case 42:
+                            parsedMessage[bitmapPosition] = Convertion.HexToAscii(Message.Substring(messagePosition, fieldLength));
+                            //parsedMessage[bitmapPosition] = Message.Substring(messagePosition, fieldLength);
+                            break;
                         //Constant Length
                         default:
                             parsedMessage[bitmapPosition] = Message.Substring(messagePosition, fieldLength);
