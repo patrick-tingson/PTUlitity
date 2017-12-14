@@ -3,115 +3,34 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Tasks; 
 
 namespace PTUtility.EMV
 {
-    public static class Tags
+    public class DE55Tags
     {
-        public const string AcquirerIdentifier  = "9F01";
-        public const string AdditionalTerminalCapabilities  = "9F40";
-        public const string AmountAuthorised  = "9F02";
-        public const string AmountOther  = "9F03";
-        public const string AmountReferenceCurrency  = "9F3A";
-        public const string ApplicationCryptogram  = "9F26";
-        public const string ApplicationCurrencyCode  = "9F42";
-        public const string ApplicationCurrencyExponent  = "9F44";
-        public const string ApplicationDiscretionaryData  = "9F05";
-        public const string ApplicationEffectiveDate  = "5F25";
-        public const string ApplicationExpirationDate  = "5F24";
-        public const string ApplicationFileLocator  = "94";
-        public const string ApplicationIdentifierCard  = "4F";
-        public const string ApplicationIdentifierTerminal  = "9F06";
-        public const string ApplicationInterchangeProfile  = "82";
-        public const string ApplicationLabel  = "50";
-        public const string ApplicationPreferredName  = "9F12";
-        public const string PrimaryAccountNumber  = "5A";
-        public const string PrimaryAccountSequenceNumber  = "5F34";
-        public const string ApplicationPriorityIndicator  = "87";
-        public const string ApplicationReferenceCurrency  = "9F3B";
-        public const string ApplicationReferenceCurrencyExponent  = "9F43";
-        public const string ApplicationTemplate  = "61";
-        public const string ApplicationTransactionCounter  = "9F36";
-        public const string ApplicationUsageControl  = "9F07";
-        public const string ApplicationVersionNumber1  = "9F08";
-        public const string ApplicationVersionNumber2  = "9F09";
-        public const string AuthorisationCode  = "89";
-        public const string AuthorisationResponseCode  = "8A";
-        public const string BankIdentifierCode  = "5F54";
-        public const string CardRiskManagementDataObjectList1  = "8C";
-        public const string CardRiskManagementDataObjectList2  = "8D";
-        public const string CardholderName  = "5F20";
-        public const string CardholderNameExtended  = "9F0B";
-        public const string CardholderVerificationMethodList  = "8E";
-        public const string CardholderVerificationMethodResults  = "9F34";
-        public const string CertificationAuthorityPublicKeyIndex1  = "8F";
-        public const string CertificationAuthorityPublicKeyIndex2  = "9F22";
-        public const string CommandTemplate  = "83";
-        public const string CryptogramInformationData  = "9F27";
-        public const string DataAuthenticationCode  = "9F45";
-        public const string DedicatedFileName  = "84";
-        public const string DirectoryDefinitionFileName  = "9D";
-        public const string DirectoryDiscretionaryTemplate  = "73";
-        public const string DynamicDataAuthenticationDataObjectList  = "9F49";
-        public const string EMVProprietaryTemplate  = "70";
-        public const string FCIIssuerDiscretionaryData  = "BF0C";
-        public const string FCIProprietaryTemplate  = "A5";
-        public const string FCITemplate  = "6F";
-        public const string ICCDynamicNumber  = "9F4C";
-        public const string ICCPINEnciphermentPublicKeyCertificate  = "9F2D";
-        public const string ICCPINEnciphermentPublicKeyExponent  = "9F2E";
-        public const string ICCPINEnciphermentPublicKeyRemainder  = "9F2F";
-        public const string ICCPublicKeyCertificate  = "9F46";
-        public const string ICCPublicKeyExponent  = "9F47";
-        public const string ICCPublicKeyRemainder  = "9F48";
-        public const string IFDSerialNumber  = "9F1E";
-        public const string InternationalBankAccountNumber  = "5F53";
-        public const string IssuerActionCodeDefault  = "9F0D";
-        public const string IssuerActionCodeDenial  = "9F0E";
-        public const string IssuerActionCodeOnline  = "9F0F";
-        public const string IssuerApplicationData  = "9F10";
-        public const string IssuerAuthenticationData  = "91";
-        public const string IssuerCodeTableIndex  = "9F11";
-        public const string IssuerCountryCode  = "5F28";
-        public const string IssuerCountryCode2  = "5F55";
-        public const string IssuerCountryCode3  = "5F56";
-        public const string IssuerIdentificationNumber  = "42";
-        public const string IssuerPublicKeyCertificate  = "90";
-        public const string IssuerPublicKeyExponent  = "9F32";
-        public const string IssuerPublicKeyRemainder  = "92";
-        public const string IssuerScriptCommand  = "86";
-        public const string IssuerScriptIdentifier  = "9F18";
-        public const string IssuerScriptTemplate1  = "71";
-        public const string IssuerScriptTemplate2  = "72";
-        public const string IssuerURL  = "5F50";
-        public const string LanguagePreference  = "5F2D";
-        public const string LastOnlineApplicationTransactionCounterRegister  = "9F13";
-        public const string LogEntry  = "9F4D";
-        public const string LogFormat  = "9F4F";
-        public const string LowerConsecutiveOfflineLimit  = "9F14";
-        public const string MerchantCategoryCode  = "9F15";
-        public const string MerchantIdentifier  = "9F16";
-        public const string MerchantNameLocation  = "9F4E";
-        public const string PINTryCounter  = "9F17";
-        public const string POSEntryMode  = "9F39";
-        public const string ProcessingOptionsDataObjectList  = "9F38"; 
-        public const string ResponseMessageTemplateFormat1  = "80";
-        public const string ResponseMessageTemplateFormat2  = "77";
-        public const string ServiceCode  = "5F30";
-        public const string ShortFileIdentifier  = "88";
-        public const string SignedDynamicApplicationData  = "9F4B";
-        public const string SignedStaticApplicationData  = "93";
-        public const string StaticDataAuthenticationTagList = "9F4A";
-        public const string Track2Data = "57";
-        public const string Track1Data = "9F1F";
-        public const string TerminalCapabilities  = "9F33";
-        public const string TerminalCountryCode  = "9F1A";
-        public const string TerminalFloorLimit  = "9F1B";
-        public const string TerminalIdentification  = "9F1C";
-        public const string TerminalRiskManagementData  = "9F1D";
-        public const string TerminalType  = "9F35";
-        public const string TerminalVerificationResults  = "95";  
+        public string _5F2A { get; set; }
+        public string _5F34 { get; set; }
+        public string _82 { get; set; }
+        public string _84 { get; set; }
+        public string _95 { get; set; }
+        public string _9A { get; set; }
+        public string _9C { get; set; }
+        public string _9F02 { get; set; }
+        public string _9F03 { get; set; }
+        public string _9F09 { get; set; }
+        public string _9F10 { get; set; }
+        public string _9F1A { get; set; }
+        public string _9F1E { get; set; }
+        public string _9F26 { get; set; }
+        public string _9F27 { get; set; }
+        public string _9F33 { get; set; }
+        public string _9F34 { get; set; }
+        public string _9F35 { get; set; }
+        public string _9F36 { get; set; }
+        public string _9F37 { get; set; }
+        public string _9F41 { get; set; }
+
     }
     
     public class TNLV
@@ -160,16 +79,249 @@ namespace PTUtility.EMV
         }
     }
 
+    public class DE55
+    {
+        IEnumerable<TagsDictionary> tagsDictionary = new EMVTagsDictionary().List();
+        DE55Tags de55tags;
+        List<TNLV> tnlvListForDE55 = new List<TNLV>();
+
+        public DE55(DE55Tags _de55tags)
+        {
+            //Check if Null
+            if (_de55tags == null)
+                throw new ArgumentException("Invalid DE55 Tags");
+
+            this.de55tags = _de55tags;
+
+            //Validate tags value
+            if (de55tags._5F2A == null)
+                throw new ArgumentException("Invalid DE55 Tags 5F2A");
+            if (de55tags._5F34 == null)
+                throw new ArgumentException("Invalid DE55 Tags 5F34");
+            if (de55tags._82 == null)
+                throw new ArgumentException("Invalid DE55 Tags 82");
+            if (de55tags._84 == null)
+                throw new ArgumentException("Invalid DE55 Tags 84");
+            if (de55tags._95 == null)
+                throw new ArgumentException("Invalid DE55 Tags 95");
+            if (de55tags._9A == null)
+                throw new ArgumentException("Invalid DE55 Tags 9A");
+            if (de55tags._9C == null)
+                throw new ArgumentException("Invalid DE55 Tags 9C");
+            if (de55tags._9F02 == null)
+                throw new ArgumentException("Invalid DE55 Tags 9F02");
+            if (de55tags._9F03 == null)
+                throw new ArgumentException("Invalid DE55 Tags 9F03");
+            if (de55tags._9F09 == null)
+                throw new ArgumentException("Invalid DE55 Tags 9F09");
+            if (de55tags._9F10 == null)
+                throw new ArgumentException("Invalid DE55 Tags 9F10");
+            if (de55tags._9F1A == null)
+                throw new ArgumentException("Invalid DE55 Tags 9F1A");
+            //if (de55tags._9F1E == null)
+            //    throw new ArgumentException("Invalid DE55 Tags 9F1E");
+            if (de55tags._9F26 == null)
+                throw new ArgumentException("Invalid DE55 Tags 9F26");
+            if (de55tags._9F27 == null)
+                throw new ArgumentException("Invalid DE55 Tags 9F27");
+            if (de55tags._9F33 == null)
+                throw new ArgumentException("Invalid DE55 Tags 9F33");
+            if (de55tags._9F34 == null)
+                throw new ArgumentException("Invalid DE55 Tags 9F34");
+            if (de55tags._9F35 == null)
+                throw new ArgumentException("Invalid DE55 Tags 9F35");
+            if (de55tags._9F36 == null)
+                throw new ArgumentException("Invalid DE55 Tags 9F36");
+            if (de55tags._9F37 == null)
+                throw new ArgumentException("Invalid DE55 Tags 9F37");
+            if (de55tags._9F41 == null)
+                throw new ArgumentException("Invalid DE55 Tags 9F41");
+        }
+
+        public IEnumerable<TNLV> Create(ref string messageFormat)
+        {
+            AddTNLV(Tags.TransactionCurrencyCode, de55tags._5F2A);
+            AddTNLV(Tags.ApplicationInterchangeProfile, de55tags._82);
+            AddTNLV(Tags.DedicatedFileName, de55tags._84);
+            AddTNLV(Tags.TerminalVerificationResults, de55tags._95);
+            AddTNLV(Tags.TransactionDate, de55tags._9A);
+            AddTNLV(Tags.TransactionType, de55tags._9C);
+            AddTNLV(Tags.AmountAuthorised, de55tags._9F02);
+            AddTNLV(Tags.ApplicationVersionNumber2, de55tags._9F09);
+            AddTNLV(Tags.IssuerApplicationData, de55tags._9F10);
+            AddTNLV(Tags.TerminalCountryCode, de55tags._9F1A);
+            //AddTNLV(Tags.IFDSerialNumber, de55tags._9F1E);
+            AddTNLV(Tags.ApplicationCryptogram, de55tags._9F26);
+            AddTNLV(Tags.CryptogramInformationData, de55tags._9F27);
+            AddTNLV(Tags.TerminalCapabilities, de55tags._9F33);
+            AddTNLV(Tags.CardholderVerificationMethodResults, de55tags._9F34);
+            AddTNLV(Tags.TerminalType, de55tags._9F35);
+            AddTNLV(Tags.ApplicationTransactionCounter, de55tags._9F36);
+            AddTNLV(Tags.UnpredictableNumber, de55tags._9F37);
+            AddTNLV(Tags.TransactionSequenceCounter, de55tags._9F41);
+            AddTNLV(Tags.PrimaryAccountSequenceNumber, de55tags._5F34);
+            AddTNLV(Tags.AmountOther, de55tags._9F03);
+
+            foreach(var tnlv in tnlvListForDE55)
+            {
+                messageFormat = string.Format("{0}{1}{2}{3}",
+                    messageFormat,
+                    tnlv.Tags,
+                    tnlv.Length,
+                    tnlv.Value
+                    );
+            }
+
+            return tnlvListForDE55;
+        } 
+
+        void AddTNLV(string tags, string value)
+        { 
+            try
+            {
+                var _tnlv = tagsDictionary.FirstOrDefault(w => w.Tags == tags);
+                tnlvListForDE55.Add(new TNLV
+                {
+                    Length = Convertion.DecimalToHex(value.Length / 2),
+                    Name = _tnlv.Name,
+                    Tags = _tnlv.Tags,
+                    Value = value
+                });
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+    }
+
+    public class CDOL1
+    {
+        IEnumerable<TagsDictionary> tagsDictionary = new EMVTagsDictionary().List();
+        IEnumerable<TNLV> DE55_TNLV = new List<TNLV>();
+        List<TNLV> cdolTagList = new List<TNLV>();
+        string TAG_8C = "";
+
+
+        public CDOL1(string _TAG_8C)
+        {
+            if (_TAG_8C.Length == 0)
+                throw new ArgumentException("Invalid TAG_8C");
+
+            this.TAG_8C = _TAG_8C;
+        }
+
+        public CDOL1(IEnumerable<TNLV> _DE55_TNLV, string _TAG_8C)
+        {
+            if (_DE55_TNLV == null)
+                throw new ArgumentException("Invalid DE55_TNLV");
+
+            if (_TAG_8C.Length == 0)
+                throw new ArgumentException("Invalid TAG_8C");
+
+            this.TAG_8C = _TAG_8C;
+            this.DE55_TNLV = _DE55_TNLV;
+        }
+
+        public string Create()
+        {
+            if (DE55_TNLV == null)
+                throw new ArgumentException("Invalid DE55_TNLV");
+
+            var result = "";
+            try
+            { 
+                var tagSelector = new TagsSelector(DE55_TNLV);
+
+                foreach (var cdol1 in Parse())
+                {
+                    result = string.Format("{0}{1}",
+                        result,
+                        tagSelector.Value(cdol1.Tags));
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+            }
+            
+            return result;
+        }
+
+        public IEnumerable<TNLV> Parse()
+        { 
+            var data = TAG_8C;
+            var index = 0;
+            var len = 0;
+            var lenLength = "";
+            var startIndexToRead = 0;
+            var val = "";
+            TNLV _tnlv;
+
+            try
+            {
+                for (int i = 0; i < TAG_8C.Length; i++)
+                {
+                    //Check the 1st 2 Chars
+                    for (int ii = 1; ii <= 4; ii++)
+                    {
+                        var toCheckData = data.Substring(startIndexToRead, ii);
+
+                        _tnlv = tagsDictionary.FirstOrDefault(w => w.Tags == toCheckData); 
+
+                        if (_tnlv != null)
+                        {
+                            lenLength = _tnlv.Length == null ? data.Substring(i + ii, 2) : _tnlv.Length;
+                            //len = Convertion.HexToDecimal(lenLength) * 2; 
+                            startIndexToRead = i + ii + lenLength.Length;
+                            i = startIndexToRead - 1;
+                            cdolTagList.Add(new TNLV
+                            {
+                                Length = lenLength,
+                                Name = _tnlv.Name,
+                                Tags = _tnlv.Tags, 
+                            }); 
+
+                            break;
+                        }
+
+                        if (ii == 4)
+                        {
+                            ////Move to next Tags. Maybe encouter some "9000" value that is not included in the Tags Dictionary
+                            //startIndexToRead += 4;
+                            ////Always -1 because the 1st For Loop will automatically add +1
+                            //i += 3;
+
+                            throw new ArgumentException("Invalid TLV Data"); 
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            foreach (var tnlv in cdolTagList)
+            {
+                Console.WriteLine(tnlv.Tags + " " + tnlv.Length + " " + tnlv.Name);
+            }
+
+            return cdolTagList;
+        }
+    }
 
     namespace DataParser
     {
 
         public class TLV
         {
-            private IEnumerable<TagsDictionary> tagsDictionary = new EMVTagsDictionary().List();
-            private List<string> rawDataList = new List<string>();
-            private List<TNLV> tnlvList = new List<TNLV>();
-            private string rawData = "";
+            IEnumerable<TagsDictionary> tagsDictionary = new EMVTagsDictionary().List();
+            List<string> rawDataList = new List<string>();
+            List<TNLV> tnlvList = new List<TNLV>();
+            string rawData = "";
 
             public TLV(string _data)
             {
@@ -397,7 +549,6 @@ namespace PTUtility.EMV
                 }
             }
 
-
             IEnumerable<TNLV> EMVParent(string _rawData, string template)
             {
                 var rawList = new List<TNLV>();
@@ -417,7 +568,13 @@ namespace PTUtility.EMV
                         for (int ii = 1; ii <= 4; ii++)
                         {
                             var toCheckData = data.Substring(startIndexToRead, ii);
-                            _tnlv = tagsDictionary.FirstOrDefault(w => w.Tags == toCheckData && w.Template == template);
+
+                            if(template.Length == 0)
+                                _tnlv = tagsDictionary.FirstOrDefault(w => w.Tags == toCheckData);
+                            else
+                                _tnlv = tagsDictionary.FirstOrDefault(w => w.Tags == toCheckData && w.Template == template);
+
+                            
                             if (_tnlv != null)
                             {
                                 lenLength = _tnlv.Length == null ? data.Substring(i + ii, 2) : _tnlv.Length;
@@ -450,6 +607,7 @@ namespace PTUtility.EMV
                                 //i += 3;
 
                                 throw new ArgumentException("Invalid TLV Data");
+                                return rawList;
                             }
                         }
                     }
@@ -483,10 +641,7 @@ namespace PTUtility.EMV
                 return val;
             }
 
-
         }
-
-
 
         public class GetProcessingOption
         {
@@ -495,7 +650,9 @@ namespace PTUtility.EMV
             public string SW2 { get; set; }
             public string ApplicationInterchangeProfile { get; set; }
             public List<ApplicationFileLocator> ApplicationFileLocatorList { get; set; }
-            private string data = "";
+
+            string data = "";
+
             public GetProcessingOption(string data)
             { 
                 if(data.Length > 0)
@@ -555,5 +712,8 @@ namespace PTUtility.EMV
                 return response;
             }
         }
+
     }
+
+
 }

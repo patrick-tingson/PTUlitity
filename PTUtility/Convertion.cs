@@ -136,6 +136,11 @@ namespace PTUtility.Utility
             return returnVal;
         }
 
+        public static string DecimalToHex(int decimalString)
+        {
+            return decimalString.ToString("X2");
+        }
+
         //Public Function ConvertHexToDecimal(strHex As String) As Integer
 
         //Dim intCtr As Integer
